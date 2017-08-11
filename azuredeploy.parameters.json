@@ -1,0 +1,114 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "_artifactsLocation": {
+      "value": "https://raw.githubusercontent.com/haroldwongms/openshift-containerplatform/master/"
+    },
+    "customVhdOrGallery": {
+      "value": "gallery"
+    },
+    "customStorageAccount": {
+      "value": "changeme"
+    },
+    "customOsDiskName": {
+      "value": "changeme"
+    },
+    "masterVmSize": {
+      "value": "Standard_DS2_v2"
+    },
+    "infraVmSize": {
+      "value": "Standard_DS2_v2"
+    },
+    "nodeVmSize": {
+      "value": "Standard_DS2_v2"
+    },
+    "openshiftClusterPrefix": {
+      "value": "mtchoucluster"
+    },
+    "openshiftMasterPublicIpDnsLabel": {
+      "value": "mtchoumaster"
+    },
+    "infraLbPublicIpDnsLabel": {
+      "value": "mtchouinfra"
+    },
+    "masterInstanceCount": {
+      "value": 1
+    },
+    "infraInstanceCount": {
+      "value": 1
+    },
+    "nodeInstanceCount": {
+      "value": 1
+    },
+    "dataDiskSize": {
+      "value": 128
+    },
+    "adminUsername": {
+      "value": "mtchouadmin"
+    },
+    "openshiftPassword": {
+      "value": "Pass@word1"
+    },
+    "enableMetrics": {
+      "value": "false"
+    },
+    "enableLogging": {
+      "value": "false"
+    },
+    "enableCockpit": {
+      "value": "true"
+    },
+    "rhsmUsernamePasswordOrActivationKey": {
+      "value": "usernamepassword"
+    },
+    "rhsmUsernameOrOrgId": {
+      "value": "openatmtc"
+    },
+    "rhsmPasswordOrActivationKey": {
+      "value": "mtcEXP17!"
+    },
+    "rhsmPoolId": {
+      "value": "8a85f9815b6b6b33015b6b70880b047d"
+    },
+    "sshPublicKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCitgBhgf/11Y9IWOCYoaG3/OHeO3J8+nGu4veBM5qg8RVNmHdDviUucOLTvIQCuYtNaQElwiErZC3TGJUb5NJ+O+gGwioWf0ABkzAfaJ0vFFn1NeJtpUrSTXWKhNZjkxWpnVaSKJwcSQU8roN0z8vKnIFjG82Cb/wLcaFqg2jDkcf1gPTZJNk3YN73P9ZoTq0dP3fpUqw+HZvEYIlpJrZArH8huOTHCLa7HT7IqvjJ0kD+pSuMCbB6G63sZs1k1aqbfuWaYEzY7M1ejXIKcqnNLEGcFt3TR/VmTPb9R04DFaP5aQT9FY1yYhPGoLM0MvDmaDV0k2sTzpjQs2/CYMvn redhatadmin"
+    },
+
+      "keyVaultResourceGroup": {
+        "value": "rt-keyvault_rg"
+      },
+      "keyVaultName": {
+        "value": "rtkeyvault"
+      },
+      "keyVaultSecret": {
+        "value": "redhat"
+      },
+      "aadClientId": {
+        "value": "6e0bd5e8-1301-4b6e-9e16-9af8599641e5"
+      },
+      "aadClientSecret": {
+        "value": "Pass@word1"
+      },
+      "defaultSubDomainType": {
+        "value": "xipio"
+      },
+      "defaultSubDomain": {
+        "value": "contoso.com"
+      },
+
+
+      "virtualNetworkName": {
+        "value": "openshiftvnet"
+      },
+      "virtualNetworkResourceGroup": {
+        "value": "rt-openshiftinfra_rg"
+      },
+      "masterSubnetName": {
+        "value": "mastersubnet"
+      },
+      "nodeSubnetName": {
+        "value": "nodesubnet"
+      }
+    }
+  }
