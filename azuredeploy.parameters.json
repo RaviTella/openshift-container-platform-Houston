@@ -15,22 +15,22 @@
 			"value": "changeme"
 		},
 		"masterVmSize": {
-			"value": "Standard_DS3_v2"
+			"value": "Standard_DS2_v2"
 		},
 		"infraVmSize": {
-			"value": "Standard_DS3_v2"
+			"value": "Standard_DS2_v2"
 		},
 		"nodeVmSize": {
-			"value": "Standard_DS3_v2"
+			"value": "Standard_DS2_v2"
 		},
 		"openshiftClusterPrefix": {
-			"value": "mtchoucluster"
+			"value": "changeme"
 		},
 		"openshiftMasterPublicIpDnsLabel": {
-			"value": "mtchoumaster"
+			"value": "GEN-UNIQUE"
 		},
 		"infraLbPublicIpDnsLabel": {
-			"value": "mtchouinfra"
+			"value": "GEN-UNIQUE"
 		},
 		"masterInstanceCount": {
 			"value": 1
@@ -45,10 +45,10 @@
 			"value": 128
 		},
 		"adminUsername": {
-			"value": "mtchouadmin"
+			"value": "changeme"
 		},
 		"openshiftPassword": {
-			"value": "Pass@word1"
+			"value": "changeme"
 		},
 		"enableMetrics": {
 			"value": "false"
@@ -57,37 +57,37 @@
 			"value": "false"
 		},
 		"enableCockpit": {
-			"value": "true"
+			"value": "false"
 		},
 		"rhsmUsernamePasswordOrActivationKey": {
-			"value": "usernamepassword"
+			"value": "password"
 		},
 		"rhsmUsernameOrOrgId": {
-			"value": "openatmtc"
+			"value": "changeme"
 		},
 		"rhsmPasswordOrActivationKey": {
-			"value": "mtcEXP17!"
+			"value": "changeme"
 		},
 		"rhsmPoolId": {
-			"value": "8a85f9815b6b6b33015b6b70880b047d"
+			"value": "changeme"
 		},
 		"sshPublicKey": {
-			"value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCitgBhgf/11Y9IWOCYoaG3/OHeO3J8+nGu4veBM5qg8RVNmHdDviUucOLTvIQCuYtNaQElwiErZC3TGJUb5NJ+O+gGwioWf0ABkzAfaJ0vFFn1NeJtpUrSTXWKhNZjkxWpnVaSKJwcSQU8roN0z8vKnIFjG82Cb/wLcaFqg2jDkcf1gPTZJNk3YN73P9ZoTq0dP3fpUqw+HZvEYIlpJrZArH8huOTHCLa7HT7IqvjJ0kD+pSuMCbB6G63sZs1k1aqbfuWaYEzY7M1ejXIKcqnNLEGcFt3TR/VmTPb9R04DFaP5aQT9FY1yYhPGoLM0MvDmaDV0k2sTzpjQs2/CYMvn redhatadmin"
+			"value": "GEN-SSH-PUB-KEY"
 		},
 		"keyVaultResourceGroup": {
-			"value": "crt-keyvault_rg"
+			"value": "changeme"
 		},
 		"keyVaultName": {
-			"value": "rtkeyvault"
+			"value": "changeme"
 		},
 		"keyVaultSecret": {
-			"value": "redha"
+			"value": "changeme"
 		},
 		"aadClientId": {
-			"value": "b7d98e3f-322d-424c-85e4-5439e434ca05"
+			"value": "changeme"
 		},
 		"aadClientSecret": {
-			"value": "Pass@word1"
+			"value": "changeme"
 		},
 		"defaultSubDomainType": {
 			"value": "xipio"
