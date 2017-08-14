@@ -1028,7 +1028,7 @@
                     "subnet": {
                       "id": "[variables('masterSubnetRef')]"
                     },
-                    "privateIPAllocationMethod": "Static"
+                    "privateIPAllocationMethod": "Dynamic"
                   }
                 }],
                 "backendAddressPools": [{
