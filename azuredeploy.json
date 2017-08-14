@@ -1024,11 +1024,9 @@
             "properties": {
                 "frontendIPConfigurations": [{
                     "name": "LoadBalancerFrontEnd",
-                    "properties": {
-                        "publicIPAddress": {
-                            "id": "[variables('masterPublicIpAddressId')]"
-                        }
-                    }
+                  "properties": {
+                    "privateIPAllocationMethod": "Static"
+                  }
                 }],
                 "backendAddressPools": [{
                     "name": "loadBalancerBackEnd"
