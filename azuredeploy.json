@@ -1025,6 +1025,9 @@
                 "frontendIPConfigurations": [{
                     "name": "LoadBalancerFrontEnd",
                   "properties": {
+                    "subnet": {
+                      "id": "[variables('masterSubnetRef')]"
+                    },
                     "privateIPAllocationMethod": "Static"
                   }
                 }],
