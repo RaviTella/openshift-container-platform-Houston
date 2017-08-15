@@ -1024,12 +1024,11 @@
             "properties": {
                 "frontendIPConfigurations": [{
                     "name": "LoadBalancerFrontEnd",
-                  "properties": {
-                    "subnet": {
-                      "id": "[variables('masterSubnetRef')]"
-                    },
-                    "privateIPAllocationMethod": "Dynamic"
-                  }
+                    "properties": {
+                        "publicIPAddress": {
+                            "id": "[variables('masterPublicIpAddressId')]"
+                        }
+                    }
                 }],
                 "backendAddressPools": [{
                     "name": "loadBalancerBackEnd"
@@ -1219,7 +1218,7 @@
                 "displayName": "OpenShiftBastionNetworkInterface"
             },
             "dependsOn": [
-               
+                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
                 "[concat('Microsoft.Network/networkSecurityGroups/', variables('openshiftBastionHostname'), '-nsg')]"
             ],
             "properties": {
@@ -1248,7 +1247,7 @@
                 "displayName": "OpenShiftMasterNetworkInterface"
             },
             "dependsOn": [
-                
+                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
                 "[concat('Microsoft.Network/loadBalancers/', variables('masterLoadBalancerName'))]",
                 "[concat(variables('masterLbId'), '/inboundNatRules/SSH-', variables('openshiftMasterHostname') ,copyIndex())]",
                 "[concat('Microsoft.Network/networkSecurityGroups/', variables('openshiftMasterHostname'), '-nsg')]"
@@ -1286,7 +1285,7 @@
                 "displayName": "OpenShiftInfraNetworkInterfaces"
             },
             "dependsOn": [
-               
+                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
                 "[concat('Microsoft.Network/loadBalancers/', variables('infraLoadBalancerName'))]",
                 "[concat('Microsoft.Network/networkSecurityGroups/', variables('openshiftInfraHostname'), '-nsg')]"
             ],
@@ -1320,7 +1319,7 @@
                 "displayName": "OpenShiftNodeNetworkInterfaces"
             },
             "dependsOn": [
-                
+                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
                 "[concat('Microsoft.Network/networkSecurityGroups/', variables('openshiftNodeHostname'), '-nsg')]"
             ],
             "copy": {
