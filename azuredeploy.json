@@ -94,7 +94,7 @@
     },
     "infraVmSize": {
       "type": "string",
-      "defaultValue": "Standard_DS2_v2",
+      "defaultValue": "Standard_DS3_v2",
       "allowedValues": [
         "Standard_A4",
         "Standard_A5",
@@ -151,7 +151,7 @@
     },
     "nodeVmSize": {
       "type": "string",
-      "defaultValue": "Standard_DS2_v2",
+      "defaultValue": "Standard_DS3_v2",
       "allowedValues": [
         "Standard_A4",
         "Standard_A5",
