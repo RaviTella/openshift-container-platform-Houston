@@ -1220,24 +1220,31 @@
             "dependsOn": [
                  "[concat('Microsoft.Network/networkSecurityGroups/', variables('openshiftBastionHostname'), '-nsg')]"
             ],
-            "properties": {
-                "ipConfigurations": [{
-                    "name": "[concat(variables('openshiftBastionHostname'), 'ipconfig')]",
-                    "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
-                        "publicIPAddress": {
-                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/publicIPAddresses/', variables('bastionPublicIp'))]"
-                        },
-                      "subnet": {
-                        "id": "[variables('masterSubnetRef')]"
-                      }
-                    }
-                }],
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftBastionHostname'), '-nsg'))]"
+          "properties": {
+            "ipConfigurations": [
+              {
+                "name": "[concat(variables('openshiftBastionHostname'), 'ipconfig')]",
+                "properties": {
+                  "privateIPAllocationMethod": "Dynamic",
+                  "publicIPAddress": {
+                    "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/publicIPAddresses/', variables('bastionPublicIp'))]"
+                  },
+                  "subnet": {
+                    "id": "[variables('masterSubnetRef')]"
+                  }
                 }
+              }
+            ],
+            "networkSecurityGroup": {
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftBastionHostname'), '-nsg'))]"
+            },
+            "dnsSettings": {
+              "dnsServers": [
+                "168.63.129.1"
+              ]
             }
-        }, {
+            }
+          }, {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[concat(variables('openshiftMasterHostname'), '-', copyIndex(), '-nic')]",
             "location": "[variables('location')]",
@@ -1255,24 +1262,35 @@
                 "count": "[parameters('masterInstanceCount')]"
             },
             "properties": {
-                "ipConfigurations": [{
-                    "name": "[concat(variables('openshiftMasterHostname'), copyIndex(), 'ipconfig')]",
-                    "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
-                      "subnet": {
-                        "id": "[variables('masterSubnetRef')]"
-                      },
-                        "loadBalancerBackendAddressPools": [{
-                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('masterLoadBalancerName'), '/backendAddressPools/loadBalancerBackEnd')]"
-                        }],
-                        "loadBalancerInboundNatRules": [{
-                            "id": "[concat(variables('masterLbId'),'/inboundNatRules/SSH-', variables('openshiftMasterHostname'), copyIndex())]"
-                        }]
-                    }
-                }],
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftMasterHostname'), '-nsg'))]"
+              "ipConfigurations": [
+                {
+                  "name": "[concat(variables('openshiftMasterHostname'), copyIndex(), 'ipconfig')]",
+                  "properties": {
+                    "privateIPAllocationMethod": "Dynamic",
+                    "subnet": {
+                      "id": "[variables('masterSubnetRef')]"
+                    },
+                    "loadBalancerBackendAddressPools": [
+                      {
+                        "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('masterLoadBalancerName'), '/backendAddressPools/loadBalancerBackEnd')]"
+                      }
+                    ],
+                    "loadBalancerInboundNatRules": [
+                      {
+                        "id": "[concat(variables('masterLbId'),'/inboundNatRules/SSH-', variables('openshiftMasterHostname'), copyIndex())]"
+                      }
+                    ]
+                  }
                 }
+              ],
+              "networkSecurityGroup": {
+                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftMasterHostname'), '-nsg'))]"
+              },
+              "dnsSettings": {
+                "dnsServers": [
+                  "168.63.129.1"
+                ]
+              }
             }
         }, {
             "type": "Microsoft.Network/networkInterfaces",
@@ -1290,23 +1308,32 @@
                 "name": "infraNicLoop",
                 "count": "[parameters('infraInstanceCount')]"
             },
-            "properties": {
-                "ipConfigurations": [{
-                    "name": "[concat(variables('openshiftInfraHostname'), copyIndex(), 'ipconfig')]",
-                    "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
-                      "subnet": {
-                        "id": "[variables('masterSubnetRef')]"
-                      },
-                        "loadBalancerBackendAddressPools": [{
-                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('infraLoadBalancerName'), '/backendAddressPools/loadBalancerBackEnd')]"
-                        }]
+          "properties": {
+            "ipConfigurations": [
+              {
+                "name": "[concat(variables('openshiftInfraHostname'), copyIndex(), 'ipconfig')]",
+                "properties": {
+                  "privateIPAllocationMethod": "Dynamic",
+                  "subnet": {
+                    "id": "[variables('masterSubnetRef')]"
+                  },
+                  "loadBalancerBackendAddressPools": [
+                    {
+                      "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('infraLoadBalancerName'), '/backendAddressPools/loadBalancerBackEnd')]"
                     }
-                }],
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftInfraHostname'), '-nsg'))]"
+                  ]
                 }
+              }
+            ],
+            "networkSecurityGroup": {
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftInfraHostname'), '-nsg'))]"
+            },
+            "dnsSettings": {
+              "dnsServers": [
+                "168.63.129.1"
+              ]
             }
+          }
         }, {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[concat(variables('openshiftNodeHostname'), '-', copyIndex(), '-nic')]",
@@ -1322,20 +1349,27 @@
                 "name": "nodeNicLoop",
                 "count": "[parameters('nodeInstanceCount')]"
             },
-            "properties": {
-                "ipConfigurations": [{
-                    "name": "[concat(variables('openshiftNodeHostname'), copyIndex(), 'ipconfig')]",
-                    "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
-                      "subnet": {
-                        "id": "[variables('nodeSubnetRef')]"
-                      }
-                    }
-                }],
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftNodeHostname'), '-nsg'))]"
+          "properties": {
+            "ipConfigurations": [
+              {
+                "name": "[concat(variables('openshiftNodeHostname'), copyIndex(), 'ipconfig')]",
+                "properties": {
+                  "privateIPAllocationMethod": "Dynamic",
+                  "subnet": {
+                    "id": "[variables('nodeSubnetRef')]"
+                  }
                 }
+              }
+            ],
+            "networkSecurityGroup": {
+              "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftNodeHostname'), '-nsg'))]"
+            },
+            "dnsSettings": {
+              "dnsServers": [
+                "168.63.129.1"
+              ]
             }
+          }
         }, {
             "name": "bastionVmDeployment",
             "type": "Microsoft.Resources/deployments",
