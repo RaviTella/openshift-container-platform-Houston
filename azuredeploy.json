@@ -1228,7 +1228,6 @@
             },
             "dependsOn": [
                 "[concat('Microsoft.Network/loadBalancers/', variables('masterLoadBalancerName'))]",
-                "[concat(variables('masterLbId'), '/inboundNatRules/SSH-', variables('openshiftMasterHostname') ,copyIndex())]",
                 "[concat('Microsoft.Network/networkSecurityGroups/', variables('openshiftMasterHostname'), '-nsg')]"
             ],
             "copy": {
@@ -1247,11 +1246,6 @@
                     "loadBalancerBackendAddressPools": [
                       {
                         "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('masterLoadBalancerName'), '/backendAddressPools/loadBalancerBackEnd')]"
-                      }
-                    ],
-                    "loadBalancerInboundNatRules": [
-                      {
-                        "id": "[concat(variables('masterLbId'),'/inboundNatRules/SSH-', variables('openshiftMasterHostname'), copyIndex())]"
                       }
                     ]
                   }
