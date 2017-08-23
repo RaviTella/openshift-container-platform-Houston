@@ -1237,11 +1237,6 @@
             ],
             "networkSecurityGroup": {
               "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftBastionHostname'), '-nsg'))]"
-            },
-            "dnsSettings": {
-              "dnsServers": [
-                "168.63.129.16"
-              ]
             }
             }
           }, {
@@ -1285,11 +1280,6 @@
               ],
               "networkSecurityGroup": {
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftMasterHostname'), '-nsg'))]"
-              },
-              "dnsSettings": {
-                "dnsServers": [
-                  "168.63.129.16"
-                ]
               }
             }
         }, {
@@ -1327,11 +1317,6 @@
             ],
             "networkSecurityGroup": {
               "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftInfraHostname'), '-nsg'))]"
-            },
-            "dnsSettings": {
-              "dnsServers": [
-                "168.63.129.16"
-              ]
             }
           }
         }, {
@@ -1363,11 +1348,6 @@
             ],
             "networkSecurityGroup": {
               "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat(variables('openshiftNodeHostname'), '-nsg'))]"
-            },
-            "dnsSettings": {
-              "dnsServers": [
-                "168.63.129.16"
-              ]
             }
           }
         }, {
