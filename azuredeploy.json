@@ -1089,28 +1089,7 @@
                 }]
             }
         },
-        {
-            "apiVersion": "[variables('apiVersionNetwork')]",
-            "type": "Microsoft.Network/loadBalancers/inboundNatRules",
-            "name": "[concat(variables('masterLoadBalancerName'), '/', 'SSH-', variables('openshiftMasterHostname'), copyIndex())]",
-            "location": "[variables('location')]",
-            "copy": {
-                "name": "masterLbLoop",
-                "count": "[parameters('masterInstanceCount')]"
-            },
-            "dependsOn": [
-                "[variables('masterLbId')]"
-            ],
-            "properties": {
-                "frontendIPConfiguration": {
-                    "id": "[variables('masterLbFrontEndConfigId')]"
-                },
-                "protocol": "tcp",
-                "frontendPort": "[copyIndex(2200)]",
-                "backendPort": 22,
-                "enableFloatingIP": false
-            }
-        },
+
         {
             "type": "Microsoft.Network/loadBalancers",
             "name": "[variables('infraLoadBalancerName')]",
