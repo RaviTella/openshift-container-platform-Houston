@@ -1,6 +1,9 @@
 #!/bin/bash
 echo $(date) " - Starting Bastion Prep Script"
 
+sudo echo "supersede domain-name kwagipstuffqxwwc.bx.internal.cloudapp.net;" >> /etc/dhcp/dhclient.conf
+sudo dhclient -v eth0
+
 SELECT=$1
 USERNAME_ORG=$2
 PASSWORD_ACT_KEY="$3"
