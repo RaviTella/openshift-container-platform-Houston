@@ -1,7 +1,7 @@
 #!/bin/bash
 echo $(date) " - Starting Master Prep Script"
 
-sudo echo "supersede domain-name kwagipstuffqxwwc.bx.internal.cloudapp.net;" >> /etc/dhcp/dhclient.conf
+sudo echo "supersede domain-name \"kwagip0frxfene3o1ke3gqxwwc.bx.internal.cloudapp.net\";" >> /etc/dhcp/dhclient.conf
 sudo dhclient -v 
 
 SELECT=$1

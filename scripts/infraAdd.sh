@@ -2,7 +2,7 @@
 
 echo $(date) " - Starting Script"
 
-sudo echo "supersede domain-name kwagipstuffqxwwc.bx.internal.cloudapp.net;" >> /etc/dhcp/dhclient.conf
+sudo echo "supersede domain-name \"kwagip0frxfene3o1ke3gqxwwc.bx.internal.cloudapp.net\";" >> /etc/dhcp/dhclient.conf
 sudo dhclient -v 
 
 set -e
