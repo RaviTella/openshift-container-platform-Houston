@@ -1061,9 +1061,7 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "publicIPAddress": {
-                "id": "[variables('masterPublicIpAddressId')]"
-              }
+              "privateIPAllocationMethod": "Static"
             }
           }
         ],
@@ -1150,9 +1148,7 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "publicIPAddress": {
-                "id": "[variables('infraPublicIpAddressId')]"
-              }
+              "privateIPAllocationMethod": "Static"
             }
           }
         ],
