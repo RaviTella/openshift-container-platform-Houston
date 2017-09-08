@@ -414,9 +414,9 @@ osm_default_node_selector='type=app'
 openshift_router_selector='type=infra'
 openshift_registry_selector='type=infra'
 
-openshift_master_cluster_hostname=$MASTERPUBLICIPHOSTNAME
-openshift_master_cluster_public_hostname=$MASTERPUBLICIPHOSTNAME
-openshift_master_cluster_public_vip=$MASTERPUBLICIPADDRESS
+#openshift_master_cluster_hostname=$MASTERPUBLICIPHOSTNAME
+#openshift_master_cluster_public_hostname=$MASTERPUBLICIPHOSTNAME
+#openshift_master_cluster_public_vip=$MASTERPUBLICIPADDRESS
 
 # Enable HTPasswdPasswordIdentityProvider
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
