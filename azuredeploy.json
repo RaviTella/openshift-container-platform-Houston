@@ -995,36 +995,6 @@
       }
     },
     {
-      "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[parameters('infraLbPublicIpDnsLabel')]",
-      "location": "[variables('location')]",
-      "apiVersion": "[variables('apiVersionNetwork')]",
-      "tags": {
-        "displayName": "OpenShiftInfraLBPublicIP"
-      },
-      "properties": {
-        "publicIPAllocationMethod": "Static",
-        "dnsSettings": {
-          "domainNameLabel": "[parameters('infraLbPublicIpDnsLabel')]"
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[parameters('openshiftMasterPublicIpDnsLabel')]",
-      "location": "[variables('location')]",
-      "apiVersion": "[variables('apiVersionNetwork')]",
-      "tags": {
-        "displayName": "OpenShiftMasterPublicIP"
-      },
-      "properties": {
-        "publicIPAllocationMethod": "Static",
-        "dnsSettings": {
-          "domainNameLabel": "[parameters('openshiftMasterPublicIpDnsLabel')]"
-        }
-      }
-    },
-    {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "masteravailabilityset",
       "location": "[variables('location')]",
@@ -1053,15 +1023,14 @@
       "tags": {
         "displayName": "OpenShiftMasterLB"
       },
-      "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/', parameters('openshiftMasterPublicIpDnsLabel'))]"
-      ],
+   
       "properties": {
         "frontendIPConfigurations": [
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
+              "privateIPAddress": "10.244.1.4",
+              "privateIPAllocationMethod": "Static",
               "subnet": {
                 "id": "[variables('masterSubnetRef')]"
               }
@@ -1144,19 +1113,17 @@
       "tags": {
         "displayName": "OpenShiftInfraLB"
       },
-      "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/', parameters('infraLbPublicIpDnsLabel'))]"
-      ],
-      "properties": {
+     "properties": {
         "frontendIPConfigurations": [
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
+              "privateIPAddress": "10.244.1.5",
+              "privateIPAllocationMethod": "Static",
               "subnet": {
                 "id": "[variables('nodeSubnetRef')]"
               }
-              }
+            }
             }
         ],
         "backendAddressPools": [
