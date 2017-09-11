@@ -1061,8 +1061,7 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAddress": "10.244.1.4",
-              "privateIPAllocationMethod": "Static",
+              "privateIPAllocationMethod": "Dynamic",
               "subnet": {
                 "id": "[variables('masterSubnetRef')]"
               }
@@ -1152,12 +1151,12 @@
         "frontendIPConfigurations": [
           {
             "name": "LoadBalancerFrontEnd",
-            "privateIPAddress": "10.244.1.132",
-            "privateIPAllocationMethod": "Static",
-            "subnet": {
-              "id": "[variables('nodeSubnetRef')]"
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('nodeSubnetRef')]"
+              }
             }
-          }
           }
         ],
         "backendAddressPools": [
@@ -1922,3 +1921,4 @@
       "value": "[variables('newStorageAccountInfra')]"
     }
   }
+}
