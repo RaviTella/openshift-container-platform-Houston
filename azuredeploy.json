@@ -1103,7 +1103,7 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAddress": "10.244.1.5",
+              "privateIPAddress": "10.244.1.132",
               "privateIPAllocationMethod": "Static",
               "subnet": {
                 "id": "[variables('nodeSubnetRef')]"
