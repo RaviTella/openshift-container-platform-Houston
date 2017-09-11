@@ -215,20 +215,7 @@
         "description": "OpenShift cluster prefix.  Used to generate master, infra and node hostnames.  Maximum of 20 characters."
       }
     },
-    "openshiftMasterPublicIpDnsLabel": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "OpenShift Master Load Balancer public IP DNS name (hostname portion). Must be lowercase. It should match with the following regular expression: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$ or it will raise an error."
-      }
-    },
-    "infraLbPublicIpDnsLabel": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "OpenShift Infra Nodes Load Balancer public IP DNS name (hostname portion). Must be lowercase. It should match with the following regular expression: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$ or it will raise an error."
-      }
-    },
+
     "masterInstanceCount": {
       "type": "int",
       "defaultValue": 1,
@@ -475,7 +462,6 @@
     "persistentVolume2Type": "Standard_LRS",
 
     "masterLoadBalancerName": "[concat(variables('openshiftMasterHostname'), 'lb')]",
-    "masterPublicIpAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('openshiftMasterPublicIpDnsLabel'))]",
     "masterLbId": "[resourceId('Microsoft.Network/loadBalancers', variables('masterLoadBalancerName'))]",
     "masterLbFrontEndConfigId": "[concat(variables('masterLbId'), '/frontendIPConfigurations/loadBalancerFrontEnd')]",
     "masterLbBackendPoolId": "[concat(variables('masterLbId'),'/backendAddressPools/loadBalancerBackend')]",
@@ -484,7 +470,6 @@
     "masterLbCockpitProbeId": "[concat(variables('masterLbId'),'/probes/cockpitProbe')]",
 
     "infraLoadBalancerName": "[concat(variables('openshiftInfraHostname'), 'lb')]",
-    "infraPublicIpAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('infraLbPublicIpDnsLabel'))]",
     "infraLbId": "[resourceId('Microsoft.Network/loadBalancers', variables('infraLoadBalancerName'))]",
     "infraLbFrontEndConfigId": "[concat(variables('infraLbId'), '/frontendIPConfigurations/loadBalancerFrontEnd')]",
     "infraLbBackendPoolId": "[concat(variables('infraLbId'),'/backendAddressPools/loadBalancerBackend')]",
@@ -1795,12 +1780,7 @@
           "openshiftMasterHostname": {
             "value": "[variables('openshiftMasterHostname')]"
           },
-          "openshiftMasterPublicIpFqdn": {
-            "value": "[reference(parameters('openshiftMasterPublicIpDnsLabel')).dnsSettings.fqdn]"
-          },
-          "openshiftMasterPublicIpAddress": {
-            "value": "[reference(parameters('openshiftMasterPublicIpDnsLabel')).ipAddress]"
-          },
+
           "openshiftInfraHostname": {
             "value": "[variables('openshiftInfraHostname')]"
           },
@@ -1837,9 +1817,6 @@
           "aadClientSecret": {
             "value": "[parameters('aadClientSecret')]"
           },
-          "xipioDomain": {
-            "value": "[concat(reference(parameters('infraLbPublicIpDnsLabel')).ipAddress, '.xip.io')]"
-          },
           "customDomain": {
             "value": "[variables('defaultSubDomain')]"
           },
@@ -1859,21 +1836,9 @@
     }
   ],
   "outputs": {
-    "Openshift Console Url": {
-      "type": "string",
-      "value": "[concat('https://', reference(parameters('openshiftMasterPublicIpDnsLabel')).dnsSettings.fqdn, ':8443/console')]"
-    },
     "Bastion DNS FQDN": {
       "type": "string",
       "value": "[reference(variables('bastionPublicIp')).dnsSettings.fqdn]"
-    },
-    "Openshift Master SSH": {
-      "type": "string",
-      "value": "[concat('ssh ', parameters('adminUsername'), '@', reference(parameters('openshiftMasterPublicIpDnsLabel')).dnsSettings.fqdn, ' -p 2200')]"
-    },
-    "Openshift Infra Load Balancer FQDN": {
-      "type": "string",
-      "value": "[reference(parameters('infraLbPublicIpDnsLabel')).dnsSettings.fqdn]"
     },
     "Node OS Storage Account Name": {
       "type": "string",
