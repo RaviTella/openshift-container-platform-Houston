@@ -1061,7 +1061,8 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
+              "privateIPAddress": "10.244.1.4",
+              "privateIPAllocationMethod": "Static",
               "subnet": {
                 "id": "[variables('masterSubnetRef')]"
               }
@@ -1152,7 +1153,8 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
+              "privateIPAddress": "10.244.1.132",
+              "privateIPAllocationMethod": "Static",
               "subnet": {
                 "id": "[variables('nodeSubnetRef')]"
               }
