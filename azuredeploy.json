@@ -1061,12 +1061,9 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAddress": "10.244.1.4",
-              "privateIPAllocationMethod": "Static",
-              "subnet": {
-                "id": "[variables('masterSubnetRef')]"
+              "publicIPAddress": {
+                "id": "[variables('masterPublicIpAddressId')]"
               }
-
             }
           }
         ],
@@ -1153,10 +1150,8 @@
           {
             "name": "LoadBalancerFrontEnd",
             "properties": {
-              "privateIPAddress": "10.244.1.5",
-              "privateIPAllocationMethod": "Static",
-              "subnet": {
-                "id": "[variables('masterSubnetRef')]"
+              "publicIPAddress": {
+                "id": "[variables('infraPublicIpAddressId')]"
               }
             }
           }
